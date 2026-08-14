@@ -1,0 +1,21 @@
+[tools]
+go = "1.26.4"
+gitleaks = "v8.18.4"
+"cargo:prek" = "latest"
+"go:github.com/google/addlicense" = "latest"
+
+[tasks.init]
+description = "Install tools, hook up hooks, and prepare environment"
+run = """
+prek install
+
+cd cli
+go mod tidy
+"""
+
+[tasks.prek]
+description = "Clean prek then run --all-files"
+run = """
+prek clean
+prek run --all-files
+"""
